@@ -167,7 +167,12 @@ Dim registryParent, registryPathChild
 registryPath = "HKEY_CURRENT_USER\Environment\Test"
 registryParent = "HKEY_CURRENT_USER"
 registryPathChild = "Environment\Test"
-filePath = "C:\Users\ve00ym279\OneDrive - YAMAHA MOTOR CO., LTD\Desktop\Scripts\vbs\POC\test_one.json"
+' filePath = "C:\Users\Soumya Mitra\Documents\Work&Learn\Git\VBScript\vbs\POC\test_one.json"
+filePathInRegistry = "HKEY_CURRENT_USER\Environment\Test"
+filePath = getRegistryKey(filePathInRegistry,"PathToJson")
+WScript.Echo filePath
+
+MsgBox(filePath)
 
 Dim keyValDict
 Dim fileContent

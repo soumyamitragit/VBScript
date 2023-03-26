@@ -36,12 +36,14 @@ Function prefixSearch(subKeys,keyPrefix)
     Dim subKeysToDelete()
     ' Empting out the array
     ReDim subKeysToDelete(-1)
-    For i = 0 To UBound(subKeys)
-        If Left(subKeys(i), Len(keyPrefix)) = keyPrefix Then
-            Redim Preserve subKeysToDelete(UBound(subKeysToDelete)+1)
-            subKeysToDelete(UBound(subKeysToDelete)) = subKeys(i)
-        End If
-    Next
+    If Not IsNull(subKeys) Then
+        For i = 0 To UBound(subKeys)
+            If Left(subKeys(i), Len(keyPrefix)) = keyPrefix Then
+                Redim Preserve subKeysToDelete(UBound(subKeysToDelete)+1)
+                subKeysToDelete(UBound(subKeysToDelete)) = subKeys(i)
+            End If
+        Next
+    End If
     prefixSearch = subKeysToDelete
 End Function
 
@@ -64,5 +66,5 @@ ReDim prefixArray(prefixCount-1)
 prefixArray(0) = "RELAY_PROPS_"
 prefixArray(1) = "RELAY_PROPERTIES_"
 For i = 0 To UBound(prefixArray)
-    deleteAllRegistryKeysWithPrefix "HKEY_CURRENT_USER","Environment\test","prefixArray(i)"
+    deleteAllRegistryKeysWithPrefix "HKEY_CURRENT_USER","Environment\test",prefixArray(i)
 Next

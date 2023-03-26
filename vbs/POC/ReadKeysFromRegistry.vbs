@@ -13,12 +13,17 @@ Function getRegistryKeys(regPath)
     Dim subKeys
     regProvider.EnumValues HKEY_LOCAL_MACHINE, keyPath, subKeys
 
-    For i = 0 To UBound(subKeys)
-        Dim valueData
-        ' regProvider.GetStringValue HKEY_LOCAL_MACHINE, keyPath, subKeys(i), valueData
-        ' WScript.Echo subKeys(i) & "=" & valueData
-        WScript.Echo subKeys(i)
-    Next
+    If Not IsNull(subKeys) Then
+
+        For i = 0 To UBound(subKeys)
+            Dim valueData
+            ' regProvider.GetStringValue HKEY_LOCAL_MACHINE, keyPath, subKeys(i), valueData
+            ' WScript.Echo subKeys(i) & "=" & valueData
+            WScript.Echo subKeys(i)
+        Next
+
+    End If
+
 End Function
 
 getRegistryKeys ""
